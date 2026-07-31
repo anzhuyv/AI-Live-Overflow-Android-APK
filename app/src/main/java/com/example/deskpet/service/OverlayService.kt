@@ -60,8 +60,8 @@ class OverlayService : Service() {
     companion object {
         private const val CHANNEL_ID = "pet_overlay_channel"
         private const val NOTIFICATION_ID = 1001
-        private const val PET_WIDTH_DP = 180
-        private const val PET_HEIGHT_DP = 240
+        private const val PET_WIDTH_DP = 120
+        private const val PET_HEIGHT_DP = 160
 
         // 填上你的 Supabase 信息即可开启同步；留空则不上报
         private const val SUPABASE_URL = ""
@@ -99,6 +99,7 @@ class OverlayService : Service() {
 
         overlayView = WebView(this).apply {
             setBackgroundColor(0x00000000)
+            setInitialScale(67)
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true
