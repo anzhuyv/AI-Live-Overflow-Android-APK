@@ -15,8 +15,8 @@ body {
 
 #pet {
     position: relative;
-    width: 160px;
-    height: 108px;
+    width: 80px;
+    height: 54px;
 }
 
 .pixel-pet {
@@ -121,4 +121,8 @@ body {
 .bubble.show {
     opacity: 1;
     visibility: visible;
+}
+
+.ear-inner rect {
+    fill: #FFFFFF;
 }
