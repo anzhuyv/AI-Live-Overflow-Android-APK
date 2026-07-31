@@ -15,8 +15,8 @@ body {
 
 #pet {
     position: relative;
-    width: 120px;
-    height: 160px;
+    width: 160px;
+    height: 108px;
 }
 
 .pixel-pet {
@@ -31,11 +31,11 @@ body {
 }
 
 .body rect {
-    fill: #FF8C42;
+    fill: #000000;
 }
 
 .eye rect {
-    fill: #1A1A1A;
+    fill: #FFFFFF;
 }
 
 .eye {
@@ -55,7 +55,7 @@ body {
 }
 
 .mouth rect {
-    fill: #1A1A1A;
+    fill: #000000;
 }
 
 #pet.shy .blush rect {
