@@ -99,7 +99,6 @@ class OverlayService : Service() {
 
         overlayView = WebView(this).apply {
             setBackgroundColor(0x00000000)
-            setInitialScale(67)
             settings.apply {
                 javaScriptEnabled = true
                 domStorageEnabled = true

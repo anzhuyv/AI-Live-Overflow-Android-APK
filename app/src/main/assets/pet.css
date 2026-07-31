@@ -1,175 +1,88 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
 }
 
 body {
-    background: transparent;
-    overflow: hidden;
-    width: 100vw;
-    height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 #pet {
     position: relative;
-    width: 160px;
-    height: 200px;
-    user-select: none;
+    width: 120px;
+    height: 160px;
 }
 
-.body {
-    position: absolute;
-    width: 140px;
-    height: 150px;
-    background: linear-gradient(135deg, #a8d8ff 0%, #7bbcff 100%);
-    border-radius: 50% 50% 45% 45%;
-    left: 10px;
-    top: 40px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    animation: breathe 2s ease-in-out infinite;
-}
-
-.ear {
-    position: absolute;
-    width: 36px;
-    height: 50px;
-    background: #7bbcff;
-    border-radius: 50% 50% 0 0;
-    top: -30px;
-}
-
-.ear.left {
-    left: 15px;
-    transform: rotate(-15deg);
-}
-
-.ear.right {
-    right: 15px;
-    transform: rotate(15deg);
-}
-
-.face {
-    position: absolute;
+.pixel-pet {
+    display: block;
     width: 100%;
-    height: 80px;
-    top: 35px;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+.shadow rect {
+    fill: rgba(0, 0, 0, 0.16);
+}
+
+.body rect {
+    fill: #FF8C42;
+}
+
+.eye rect {
+    fill: #1A1A1A;
 }
 
 .eye {
-    position: absolute;
-    width: 22px;
-    height: 28px;
-    background: #2d2d2d;
-    border-radius: 50%;
-    top: 10px;
-    animation: blink 4s infinite;
+    animation: blink 4s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center;
 }
 
-.eye.left {
-    left: 32px;
-}
-
-.eye.right {
-    right: 32px;
-}
-
-.eye.closed {
-    height: 4px;
-    top: 22px;
-    background: #2d2d2d;
-    border-radius: 2px;
-}
-
-.pupil {
-    position: absolute;
-    width: 8px;
-    height: 10px;
-    background: white;
-    border-radius: 50%;
-    top: 5px;
-    right: 4px;
-}
-
-.blush {
-    position: absolute;
-    width: 18px;
-    height: 10px;
-    background: rgba(255, 150, 150, 0.5);
-    border-radius: 50%;
-    top: 48px;
+.blush rect {
+    fill: #FFB3C1;
     opacity: 0;
     transition: opacity 0.3s;
 }
 
-.blush.left {
-    left: 24px;
+.mouth.shy-mouth {
+    display: none;
 }
 
-.blush.right {
-    right: 24px;
+.mouth rect {
+    fill: #1A1A1A;
 }
 
-.mouth {
-    position: absolute;
-    width: 20px;
-    height: 10px;
-    border-bottom: 3px solid #2d2d2d;
-    border-radius: 0 0 20px 20px;
-    left: 50%;
-    top: 55px;
-    transform: translateX(-50%);
-}
-
-.paw {
-    position: absolute;
-    width: 28px;
-    height: 22px;
-    background: #7bbcff;
-    border-radius: 50%;
-    bottom: -10px;
-}
-
-.paw.left {
-    left: 30px;
-}
-
-.paw.right {
-    right: 30px;
-}
-
-.bubble {
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 8px 14px;
-    border-radius: 16px;
-    font-size: 13px;
-    color: #333;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-}
-
-.bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 8px solid transparent;
-    border-top-color: white;
-}
-
-.bubble.show {
+#pet.shy .blush rect {
     opacity: 1;
+}
+
+#pet.shy .mouth.normal {
+    display: none;
+}
+
+#pet.shy .mouth.shy-mouth {
+    display: block;
+}
+
+.body {
+    animation: breathe 2s ease-in-out infinite;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+}
+
+#pet.jump .creature {
+    animation: jump 0.5s ease;
+}
+
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    93%, 97% { transform: scaleY(0.1); }
 }
 
 @keyframes breathe {
@@ -177,28 +90,35 @@ body {
     50% { transform: scale(1.03); }
 }
 
-@keyframes blink {
-    0%, 45%, 55%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(0.1); }
-}
-
-.jump {
-    animation: jump 0.5s ease !important;
-}
-
 @keyframes jump {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-40px) scale(1.05); }
+    0% { transform: translateY(0); }
+    30% { transform: translateY(-40px); }
+    60% { transform: translateY(-40px); }
+    100% { transform: translateY(0); }
 }
 
-.shy .blush {
+.bubble {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #333333;
+    font-size: 11px;
+    line-height: 1.4;
+    padding: 5px 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.bubble.show {
     opacity: 1;
-}
-
-.shy .mouth {
-    width: 12px;
-    height: 12px;
-    border: 3px solid #2d2d2d;
-    border-radius: 50%;
-    background: transparent;
+    visibility: visible;
 }
